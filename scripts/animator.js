@@ -1,4 +1,5 @@
 import { interpolate, separate, splitPathString } from "https://esm.sh/flubber@0.4.2";
+import TextToSVG from 'https://esm.sh/@naari3/text-to-svg@3.3.1';
 import {
   CssColorParser,
   CssColorParserPlus,
@@ -17,7 +18,6 @@ export function animator(props) {
   const scenes = props.scenes || [];
   const parentElement = props.parentElement || document.body;
   const canvas = document.createElement("canvas");
-  canvas.id = "thecanvasid"
   // canvas.style.width = "100%";
   // canvas.style.height = "100%";
   canvas.width = window.innerWidth;
@@ -448,6 +448,50 @@ export class Circle extends Path {
   }
 }
 
+export class Text extends Path {
+  constructor(props) {
+    super(props);
+    this.font = this.font || "./notosans.otf";
+    // this.isCircle = true;
+    // let p = "";
+    // this.isCircle = true;
+    // TextToSVG.loadSync();
+    let p = this;
+    TextToSVG.load(this.font, function(err, textToSVG) {
+      if (err) throw err;
+      p.p = textToSVG.getD(props.text || '');
+    });
+    // path.ellipse(this.x || 0, this.y || 0, this.width / 2, this.height/2, 0, 0, Math.PI * 2);
+    // this.p = p;
+  }
+  render(ctx, t, canvas) {
+    const path = new Path2D(this.p);
+    // path.ellipse((this.x || 0) + this.width/4, (this.y || 0) + this.height/4, (this.width/2) || 50, (this.height/2) || 50, 0, 0, Math.PI * 2);
+    // path.arc(this.x || 0, this.y || 0, this.width / 2, 0, Math.PI * 2);
+    // console.log(path.getPathData());
+    ctx.lineWidth = this.strokeWeight;
+    let oldFill = 'transparent';
+    let oldStroke = ctx.strokeStyle;
+    ctx.fillStyle = this.fill;
+    ctx.strokeStyle = this.stroke;
+    ctx.translate(
+      this.offsetX + this.x,
+      this.offsetY + this.y
+    );
+    let pathDrawer = util.drawPercentageOfPath(path, ctx, this.drawInAmount);
+    pathDrawer.next();
+    ctx.fill(path);
+    ctx.stroke(path);
+    pathDrawer.next();
+    ctx.translate(
+      -this.offsetX - this.x,
+      -this.offsetY - this.y
+    );
+    ctx.fillStyle = oldFill;
+    ctx.strokeStyle = oldStroke;
+  }
+}
+
 // export class Circle extends Component {
 //   constructor(props) {
 //     super(props);
@@ -595,8 +639,11 @@ export function xml(strings, ...values) {
 
 export const util = {
   drawPercentageOfPath: function* (path, ctx, t) {
-    ctx.setLineDash([path.getTotalLength(), path.getTotalLength()]);
-    ctx.lineDashOffset = (1 - t) * path.getTotalLength();
+    let split = splitPathString(path.toSVGString());
+    let l = 0;
+    split.forEach(v => {let length = (new Path2D(v)).getTotalLength(); l = length > l ? length : l});
+    ctx.setLineDash([l, l]);
+    ctx.lineDashOffset = (1 - t) * (l);
     yield;
     ctx.setLineDash([]);
     ctx.lineDashOffset = 0;

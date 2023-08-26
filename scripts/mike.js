@@ -45,7 +45,7 @@ function* myScene(scene) {
   yield* scene.all(circle4.offset(thing, thing, 500), circle4.drawIn(1, 500), circle3.fillTween(circle3.stroke + '50', 500));
   yield* circle4.fillTween(circle4.stroke + '50', 500);
   yield* scene.all(circle1.strokeTween('#ffffff00', 500), circle2.strokeTween('#ffffff00', 500), circle3.strokeTween('#ffffff00', 500), circle4.strokeTween('#ffffff00', 500), circle1.path('M-50 -50H50V50H-50V-50Z', 500), circle2.path('M-50 -50H50V50H-50V-50Z', 500), circle3.path('M-50 -50H50V50H-50V-50Z', 500), circle4.path('M-50 -50H50V50H-50V-50Z', 500), circle1.fillTween('#F35220', 500), circle2.fillTween('#82BD01', 500), circle3.fillTween('#00A7F0', 500), circle4.fillTween('#FFBB02', 500), circle1.position(-thing2 - thing3, 0, 500), circle2.position(-thing2 - thing3, 0, 500), circle3.position(-thing2 - thing3, 0, 500), circle4.position(-thing2 - thing3, 0, 500));
-  yield* path1.drawIn(0.4, 1000);
+  yield* path1.drawIn(1, 1000);
   yield* scene.all(path1.strokeTween('#ffffff00', 500), path1.fillTween('#ffffff', 500));
   // yield* circle.path("M486.5 1.5L255.5 79.5L438 76L264 152.5L1 39.5L20 199L99.5 172L47.5 297L307 283L4thing 222.5L486.5 1.5Z", 500);
   // yield* scene.wait(1000);
