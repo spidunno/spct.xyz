@@ -1,0 +1,184 @@
+@import url('assets/fonts/Futura\ PT/FuturaPT-Book.css');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+:root {
+  --background-root: #121212;
+  --foreground-root: #ffefff;
+  --accent: 68,255,51;
+  --font-body: 'Quicksand', sans-serif;
+  --font-header: 'Futura PT Book';
+  background-color: var(--background-root);
+  color: var(--foreground-root);
+}
+.columns {
+  flex-flow: column wrap;
+}
+.light {
+  position: fixed;
+  width: 16px;
+  height: 16px; 
+  /* bottom: calc(256px - 16px - 8px); */
+  /* left: calc(57.2723828125vw); */
+  right: calc((28.485078125vw/2) + 24px);
+  margin-top: 16px;
+}
+.card-title {
+  display: block;
+  position: relative;
+  bottom: calc(256px);
+  margin-left: 256px;
+  margin-bottom: -20px;
+  font-weight: lighter;
+  left: 16px;
+  font-family: var(--font-body);
+  /* width: 50px; */
+  font-size: 48px;
+  /* text-align: left; */
+  /* align-items: left; */
+}
+.card-short-description {
+  font-family: var(--font-body);
+  display: block;
+  position: relative;
+  font-weight: normal;
+  bottom: calc(256px);
+  margin-left: 256px;
+  left: 16px;
+  /* width: 50px; */
+  font-size: 32px;
+  /* text-align: left; */
+  /* align-items: left; */
+}
+.cards {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: start;
+  padding-top: 80px;
+}
+/* .card > * { */
+  /* color: red; */
+/* } */
+.card {
+  align-content;
+  align-items: end;
+  /* padding: -100px !important; */
+  margin-top: 16px;
+  margin-bottom: 16px;
+  /* flex-flow: row nowrap !important; */
+  /* align-self: center; */
+  height: 256px;
+  width: calc(71.514921875vw - 16px);
+  background-color: #ffffff20;
+  border-radius: 32px;
+  flex-wrap: nowrap;
+  /* border-color: #ffffff50; */
+  /* border-width: 3px; */
+  /* overflow: hidden; */
+}
+.card > img {
+  width: 256px;
+  height: 256px;
+  /* border-top-left-radius: 32px; */
+  /* border-bottom-left-radius: 32px; */
+  border-radius: 32px 0px 0px 32px;
+}
+#stars {
+  position:absolute;
+  z-index: -100;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+#star-canvas {
+  width: 100vw;
+  height: 100vh;
+  position:absolute;
+  top: 0px;
+  left: 0px;
+}
+body {
+  display: flex;
+  column-gap: 16px 16px;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  flex-flow: row wrap;
+  font-family: var(--font-body);
+}
+h1, h2, h3, h4, h5, h6, header {
+  font-family: var(--font-header);
+}
+.lol {
+  font-size: 96px;
+  text-align: center;
+  align-items: center;
+}
+@media (min-width: 1000px) {
+  div.title-button-group-small {
+    flex-direction: row;
+    display: none;
+  }
+.title-button {
+  font-family: var(--font-body);
+  font-size: 32px;
+  /* height: calc(3.3333333333vh*2); */
+  height: 64px;
+  width: calc(13.3333333333vw);
+  border-radius: 32px;
+  outline: none;
+  margin-left: 0.4vw;
+  margin-right: 0.4vh;
+  border-color: rgb(var(--accent));
+  background-color: rgba(var(--accent), 0.1);
+  color: var(--foreground-root);
+  border-style: solid;
+  border-width: 1px;
+  transition: background-color 0.1s ease-in-out;
+  /* transition: color 0.1s ease-in-out; */
+}
+}
+@media (max-width: 1000px) {
+  div.title-button-group-large {
+    flex-direction: row;
+    display: none;
+  }
+  .title-button {
+    /* padding: 26px; */
+    font-family: var(--font-body);
+    font-size: 32px;
+    /* height: calc(3.3333333333vh*2); */
+    /* width: calc(3.3333333333vh*2); */
+    width: 64px;
+    height: 64px;
+    border-radius: 32px;
+    outline: none;
+    margin-left: 0.4vw;
+    margin-right: 0.4vh;
+    border-color: rgb(var(--accent));
+    background-color: rgba(var(--accent), 0.1);
+    color: var(--foreground-root);
+    border-style: solid;
+    border-width: 1px;
+    transition: background-color 0.1s ease-in-out;
+    /* transition: color 0.1s ease-in-out; */
+  }
+}
+.title-button:hover {
+  background-color: rgba(var(--accent), 0.2);
+  /* transition: background-color ease-in-out; */
+}
+.title-button:active {
+  background-color: rgba(var(--accent), 0.3);
+}
+.title-button.selected:hover {
+  background-color: rgba(var(--accent), 0.7);
+  border-color: transparent;
+}
+.title-button.selected:active {
+  background-color: rgba(var(--accent), 0.5);
+  /* color: #cccccc; */
+}
+.title-button.selected {
+  background: rgb(var(--accent));
+  color: black;
+}
